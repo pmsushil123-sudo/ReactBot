@@ -1,0 +1,11 @@
+.Server_HostAddress = http://localhost:5213
+
+### Chat endpoint - send a message to the Ollama-backed chatbot
+POST {{ReactBot.Server_HostAddress}}/api/chat
+Content-Type: application/json
+
+{
+  "message": "Hello from HTTP file"
+}
+
+###

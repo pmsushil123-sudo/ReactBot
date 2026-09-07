@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="reactbot.client/reactbot.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="ReactBot.Server/ReactBot.Server.csproj" />
+</Solution>

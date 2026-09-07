@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ReactBot - Placeholder</title>
+    <style>body{font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:2rem}</style>
+  </head>
+  <body>
+    <h1>ReactBot</h1>
+    <p>This is a placeholder index.html served by the ASP.NET server.</p>
+    <p>To use the full React UI, run the client dev server in reactbot.client (npm run dev) and refresh.</p>
+    <h2>Quick API test</h2>
+    <form id="chatForm">
+      <input id="message" placeholder="Type a message" style="width:60%" />
+      <button type="submit">Send</button>
+    </form>
+    <pre id="result" style="white-space:pre-wrap;margin-top:1rem;background:#f3f3f3;padding:1rem"></pre>
+    <script>
+      document.getElementById('chatForm').addEventListener('submit', async e => {
+        e.preventDefault();
+        const msg = document.getElementById('message').value;
+        if(!msg) return;
+        const resEl = document.getElementById('result');
+        resEl.textContent = 'Sending...';
+        try {
+          const resp = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: msg })
+          });
+          const json = await resp.json();
+          resEl.textContent = JSON.stringify(json, null, 2);
+        } catch (err) {
+          resEl.textContent = String(err);
+        }
+      });
+    </script>
+  </body>
+</html>
